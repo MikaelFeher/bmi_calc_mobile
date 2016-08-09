@@ -2,19 +2,23 @@
   <ion-content>
     <div class="row">
       <div class="col">
-        <!-- <label class="item item-input item-select">
+        <label class="item item-input item-select">
           <div class="inputlabel">Select units:</div>
-          <select [(ngModel)]="method">
-            <option value="m" selected="true">Metric</option>
-            <option value="i">Imperial</option>
-          </select>
-        </label> -->
+            <select ng-model="data.method" >
+              <option value="metric">Metric</option>
+              <option value="imperial">Imperial</option>
+            </select>
+          </label>
+
+        </label>
         <div class="list">
           <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Weight in kg" ng-model="data.weight">
+            <input ng-if="data.method === 'metric'" type="number" class="item item-input" placeholder="Weight in kg" ng-model="data.weight">
+            <input ng-if="data.method === 'imperial'" type="number" class="item item-input" placeholder="Weight in lbs" ng-model="data.weight">
           </label>
           <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Height in cm" ng-model="data.height">
+            <input ng-if="data.method === 'metric'" type="number" class="item item-input" placeholder="Height in cm" ng-model="data.height">
+            <input ng-if="data.method === 'imperial'" type="number" class="item item-input" placeholder="Height in inches" ng-model="data.height">
           </label>
           <button class="button button-full button-calm" ng-click="calculateBMI()">Calculate</button>
         </div>
